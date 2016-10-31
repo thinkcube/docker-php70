@@ -13,13 +13,14 @@ RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys BF357DD4 \
  && rm /usr/local/bin/gosu.asc \
  && chmod 4755 /usr/local/bin/gosu
 
-RUN yum install epel-release http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y && yum clean all
+RUN yum install epel-release http://rpms.remirepo.net/enterprise/remi-release-7.rpm \
+ http://packages.couchbase.com/releases/couchbase-release/couchbase-release-1.0-2-x86_64.rpm -y && yum clean all
 
 RUN sed -i  "0,/enabled=0/{s/enabled=0/enabled=1/}" /etc/yum.repos.d/remi.repo \
  && sed -i  "0,/enabled=0/{s/enabled=0/enabled=1/}" /etc/yum.repos.d/remi-php70.repo
 
 RUN yum install -y httpd mod_ssl php php-gd php-bcmath php-intl php-mcrypt php-mbstring php-process php-pdo php-mysqlnd php-xml php-pecl-zendopcache \
-php-pear php-pecl-mongodb php-phpunit-PHPUnit composer vim wget git bash-completion && yum clean all
+php-pear php-pecl-mongodb php-pecl-couchbase2 php-phpunit-PHPUnit composer vim wget git bash-completion && yum clean all
 
 RUN echo "IncludeOptional vhost.d/*.conf" >> /etc/httpd/conf/httpd.conf \
  && sed -i "s|User apache|User user|" /etc/httpd/conf/httpd.conf \
