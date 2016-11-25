@@ -26,6 +26,7 @@ RUN echo "IncludeOptional vhost.d/*.conf" >> /etc/httpd/conf/httpd.conf \
  && sed -i "s|User apache|User user|" /etc/httpd/conf/httpd.conf \
  && sed -i "s|Group apache|Group user|" /etc/httpd/conf/httpd.conf \
  && sed -i "s|#ServerName www.example.com:80|ServerName server|" /etc/httpd/conf/httpd.conf \
+ && sed -i "s|Options Indexes FollowSymLinks|Options FollowSymLinks|" /etc/httpd/conf/httpd.conf \
  && sed -i 's/^\([^#]\)/#\1/g' /etc/httpd/conf.d/welcome.conf
 
 RUN sed -i "s|;date.timezone =|date.timezone = Asia/Colombo|" /etc/php.ini
