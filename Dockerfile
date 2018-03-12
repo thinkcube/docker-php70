@@ -14,7 +14,7 @@ RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys BF357DD4 \
  && chmod 4755 /usr/local/bin/gosu
 
 RUN yum install epel-release http://rpms.remirepo.net/enterprise/remi-release-7.rpm \
- http://packages.couchbase.com/releases/couchbase-release/couchbase-release-1.0-2-x86_64.rpm -y && yum clean all
+ http://packages.couchbase.com/releases/couchbase-release/couchbase-release-1.0-4-x86_64.rpm -y && yum clean all
 
 RUN sed -i  "0,/enabled=0/{s/enabled=0/enabled=1/}" /etc/yum.repos.d/remi.repo \
  && sed -i  "0,/enabled=0/{s/enabled=0/enabled=1/}" /etc/yum.repos.d/remi-php70.repo
